@@ -1,0 +1,32 @@
+{
+  "name": "hello-world",
+  "displayName": "hello-world",
+  "description": "Describe your component here",
+  "version": "1.0.0",
+  "jetVersion": "^4.1.0",
+  "properties": { 
+    "name": {
+      "description": "Name of greetee",
+      "type": "string",
+      "writeback": false
+    }
+  },
+
+  "methods": {
+
+  }, 
+  "events" : {
+    "greetingClicked" : {
+      "description" : "User has clicked on greeting",
+      "bubbles" : true,
+      "cancelable" : false,
+      "detail" : {
+        "timestamp" : {"type" : "integer"}
+      }
+    }
+  }
+, 
+  "slots": {
+
+  }
+}

@@ -1,0 +1,7 @@
+hello-world:not(.oj-complete){
+  visibility: hidden;
+}
+
+hello-world{
+
+}
