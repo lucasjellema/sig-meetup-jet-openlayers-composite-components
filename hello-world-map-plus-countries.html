@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.4/css/ol.css" type="text/css">
+    <style>
+        .map {
+            height: 650px;
+            width: 100%;
+        }
+    </style>
+    <script src="https://openlayers.org/en/v4.6.4/build/ol.js" type="text/javascript"></script>
+    <title>OpenLayers example</title>
+</head>
+
+<body>
+    <h2>My Map</h2>
+    <div id="map" class="map"></div>
+    <script type="text/javascript">
+
+        countriesVector = new ol.source.Vector({
+            url: 'https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json',
+            format: new ol.format.GeoJSON()
+        });
+
+        var style = new ol.style.Style({
+            fill: new ol.style.Fill({
+                color: 'rgba(255, 255, 255, 0.6)'
+            }),
+            stroke: new ol.style.Stroke({
+                color: '#319FD3',
+                width: 3
+            }),
+            text: new ol.style.Text()
+        }); //style
+
+
+        var map = new ol.Map({
+            target: 'map',
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.OSM()
+                })
+                ,
+                new ol.layer.Vector({
+                    id: "countries",
+                    renderMode: 'image',
+                    source: countriesVector,
+                    style: function (feature) {
+                        style.getText().setText(feature.get('name'));
+                        return style;
+                    }
+                })],
+            view: new ol.View({
+                center: ol.proj.fromLonLat([0, 50]),
+                zoom: 5
+            })
+        });
+    </script>
+</body>
+
+</html>
